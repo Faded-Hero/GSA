@@ -1,7 +1,7 @@
 flask
 flask-restful
 gunicorn
-googleapiclient.discovery
-google_auth_oauthlib.flow
-google.auth.transport.requests
+googleapiclient
+google_auth_oauthlib
+google.auth.
 google.oauth2.credentials
