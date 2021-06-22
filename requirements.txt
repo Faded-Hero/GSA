@@ -1,0 +1,7 @@
+flask
+flask-restful
+gunicorn
+googleapiclient.discovery
+google_auth_oauthlib.flow
+google.auth.transport.requests
+google.oauth2.credentials
