@@ -13,6 +13,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
           'https://www.googleapis.com/auth/spreadsheets.readonly']
 ss_id = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
 range_name = 'Class Data!A1:C4'
+glob_key = 'AIzaSyB95yOG33_SeFX8gVD_4DaBxFYOQia2HiQ'
 app = Flask(__name__)
 api = Api(app)
 
@@ -34,7 +35,8 @@ def main():
     service = build('sheets', 'v4', credentials=creds)
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=ss_id,
-                                range=range_name).execute()
+                                range=range_name,
+                                key=glob_key).execute()
     values = result.get('values', [])
     data = {}
     for i in range(1, len(values)):
