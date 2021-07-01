@@ -1,11 +1,7 @@
 from __future__ import print_function
 from flask import Flask
 from flask_restful import Api, Resource
-import os.path
 from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
 
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
@@ -19,24 +15,10 @@ api = Api(app)
 
 
 def main():
-    creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
-
-    service = build('sheets', 'v4', credentials=creds)
+    service = build('sheets', 'v4', developerKey=glob_key)
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=ss_id,
-                                range=range_name,
-                                key=glob_key).execute()
+                                range=range_name).execute()
     values = result.get('values', [])
     data = {}
     for i in range(1, len(values)):
