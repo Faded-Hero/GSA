@@ -30,8 +30,8 @@ def main():
 
 class Quote(Resource):
     def get(self, id='1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', range_in='A1:C4'):
-        if id == "Eternal" and range_in == "A99:C99":
-            return {"name": "Tested and well work"}
+        if id == "<example_id>" and range_in == "<example_range>":
+            return {"name": "Test, well works"}
         range = 'Class Data!'+range_in
         global ss_id, range_name, data
         ss_id = id
@@ -41,7 +41,7 @@ class Quote(Resource):
             return data, 200
         return "Data not found", 404
 
-    def post(self, id, range_in):
+    def post(self):
         return 200
 
     def delete(self):
